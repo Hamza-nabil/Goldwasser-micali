@@ -46,20 +46,20 @@ def nearest_prime(n):
 
     if n % 2 == 0:
         n += 1
-
-    i = 0
+    n1 = n - 2
     while True:
-        i += 1
-        n += 2
-
         if is_prime(n):
-            return n 
+            return n
+        if is_prime(n1):
+            return n1
+        n += 2
+        n1 -= 2
 
 def big_prime(size):
     """return a prime number"""
-    n = randint(1, 9)
-    for s in range(size):
-        n += randint(0, 9) * s**10
+    n = randint(0, 9)
+    for s in range(1, size):
+        n += randint(0, 9) * 10**s
 
     return nearest_prime(n)
 
@@ -74,7 +74,7 @@ def jacobi(a, n):
     a1 = a
     while a1 % 2 == 0:
         e += 1
-        a1 =a1// 2
+        a1 = a1 // 2
     assert 2**e * a1 == a
 
     s = 0
